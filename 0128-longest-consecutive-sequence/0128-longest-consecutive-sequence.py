@@ -9,7 +9,6 @@ class Solution:
                 while i+1 in nums1:
                     x+=1
                     i = i+1   
-            if x > maxs:
-                maxs = x
+                maxs = max(maxs, x)
         return maxs
                 
