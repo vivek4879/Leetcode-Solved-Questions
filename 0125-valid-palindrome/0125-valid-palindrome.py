@@ -1,14 +1,12 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        #making an emprty string
         x = ''
-        for i in s:
-            if 65<= ord(i) <=90:
-                y=0
-                y = ord(i) + 32
-                x = x + chr(y)
-            if 97<= ord(i) <= 122 or 48<= ord(i) <= 57:
-                x = x + i
-        if x == x[::-1]:
-            return True
         
-        return False
+        #going through every character in the given string and checking if it is alphanumeric
+        for i in s:
+            if i.isalnum():
+                x += i.lower()
+                
+        #checking if x and reverse of x are equal
+        return (x == x[::-1])
