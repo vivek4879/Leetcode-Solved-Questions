@@ -1,52 +1,18 @@
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        
-        stack=[]
-        left_smaller = []
-        right_smaller = []
+        stack = []
         max_area = 0
         
-        for i, n in enumerate(heights):
-            if not stack:
-                left_smaller.append(0)
-                stack.append(i)
-            else:
-                while stack and heights[stack[-1]] >= n:
-                    stack.pop()
-                if stack:
-                    left_smaller.append(stack[-1]+1)
-                    stack.append(i)
-                else:
-                    left_smaller.append(0)
-                    stack.append(i)
-        stack =[]
-        for i ,n in reversed(list(enumerate(heights))):
-            if not stack:
-                right_smaller.append(i)
-                stack.append(i)
-            else:
-                while stack and heights[stack[-1]] >= n:
-                    stack.pop()
-                if stack:
-                    right_smaller.append(stack[-1]-1)
-                    stack.append(i)
-                else:
-                    right_smaller.append(len(heights)-1)
-                    stack.append(i)
+        for i , h in enumerate(heights):
+            start = i
+            while stack and stack[-1][1] > h:
+                index , height = stack.pop()
+                max_area = max(max_area, height * (i - index))
+                start = index    
+            stack.append((start, h))
+                    
                 
-        right_smaller=(right_smaller[::-1])
-        print(left_smaller)
-        print(right_smaller)
-        
-        for i, n in enumerate(heights):
-            area = ((abs(left_smaller[i]-right_smaller[i]) + 1) * n )
+        for i, h in stack:
+            max_area = max(max_area, h * (len(heights) - i))
             
-            if area > max_area:
-                max_area = area
-                
         return max_area
-            
-                    
-                    
-                
-                
