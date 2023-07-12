@@ -13,16 +13,20 @@ class Solution:
                 L = mid + 1
             else:
                 mat = matrix[mid]
-                l,r = 0, len(mat)-1
-                while l <= r:
-                    mid = (l+r)//2
-                    if target < mat[mid]:
-                        r = mid - 1
-                    elif target > mat[mid]:
-                        l = mid + 1
-                    else:
-                        return True
-                return False
+                break
+        if not (L<= R):
+            return False
+        else:
+            l,r = 0, len(mat)-1
+            while l <= r:
+                mid = (l+r)//2
+                if target < mat[mid]:
+                    r = mid - 1
+                elif target > mat[mid]:
+                    l = mid + 1
+                else:
+                    return True
+            return False
     
         
             
