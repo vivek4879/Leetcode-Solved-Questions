@@ -5,7 +5,6 @@ class Solution:
         for i in range(k):
             max1 = nums[-1]
             max_num = max_num + max1
-            nums.pop(-1)
-            nums.append(max1 + 1)
+            nums[-1] = max1 + 1
         return max_num
             
